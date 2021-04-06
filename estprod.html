@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cálculo da Estimativa de Produção</title>
+    <link rel="stylesheet" href="estilo.css">
+
+    <script>
+      //Função que calcula a estimativa de produção baseado nos inputs do usuário e a estimativa de lingote.
+      //Parte da função que calcula a estimativa de produção
+      function calc_est(){
+        var mes = Number(document.getElementById('cmes').value)
+        var prod = Number(document.getElementById('cprod').value)
+        var meset = Number(document.getElementById('cmeset').value)
+        var set = Number(document.getElementById('cset').value)
+        var lin =Number(document.getElementById('cling').value)
+        calc = ((mes-meset)*prod)+(set*meset)
+        document.getElementById('cCalc').value = calc
+        document.getElementById('cCalcesv').value = calc-79
+
+        //Parte da função que calcula a estimativa de consumo de lingote
+        //Com Esvaziamento
+        calcling = (calc/0.965)*(lin/100)
+       //Sem esvaziamento
+        calclinge = [(calc-79)/0.97]*(lin/100)
+        document.getElementById('cCalcl').value = calcling.toFixed(2)
+        document.getElementById('cCalcli').value = calclinge.toFixed(2)
+
+      }
+color
+    </script>
+</head>
+
+<body>
+  <!--Valores de input para o cáculo da estimativa-->
+    <form method="post" id="formulario" oninput="calc_est()">
+    <fieldset id ="box">
+      <h4><strong>Estimativa de produção</strong></h4>
+<p>Digite quantidade de dias do mês: <input type="number" id="cmes"></br></p>
+<p>Digite a produção em dia normal: <input type="number" id="cprod"></br></p>
+<p>Quantas paradas serão realizadas? 
+</br><span style="font-size: 9pt;">Não considerar o esvaziamento</span> <input type="number" id="cmeset"></br></p>
+<p>Digite a produção em dia de parada: <input type="number" id="cset"></br></p>
+<p><strong>Previsão <u>sem</u> esvaziamento: </strong> <input type="text" id="cCalc" readonly></p>
+<p><strong>Previsão com esvaziamento: </strong> <input type="text" id="cCalcesv" readonly></p>
+      </fieldset>
+
+   <fieldset id ="box2">
+    <h4><strong>Estimativa de lingote</strong></h4>
+        <p>Digite a porcentagem de Lingote <input type="number" id="cling"></br></p>
+        <p><strong>Previsão <u>sem</u> esvaziamento: </strong> <input type="text" id="cCalcl" readonly></p>
+        <p><strong>Previsão com esvaziamento: </strong> <input type="text" id="cCalcli" readonly></p>
+    </fieldset>
+    
+
+</form>
+       
+</body>
+</html>
